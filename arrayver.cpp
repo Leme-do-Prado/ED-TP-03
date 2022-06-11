@@ -41,7 +41,6 @@ void print(Pilha *p) {
 	for(int i = p->qtde-1; i>=0; --i) {
 		cout << p->elementos[i] << endl;
 	}
-	cout << "----------" << endl;
 }
 
 int main(int argc, char** argv)
@@ -51,14 +50,22 @@ int main(int argc, char** argv)
 	pilhaIntEven = init();
 	pilhaIntOdd = init();
 	int arr[30];
+	int ult = 0;
 	for(int i=0;i<30;i++){
 		cin >> arr[i];
+		if(ult != 0){
+		while(arr[i]<ult){
+			cout << "Números devem seguir em ordem crescente. Tente de novo: ";
+			cin >> arr[i];
+			}
+		}
 		if(arr[i]%2 == 0){
 			push(pilhaIntEven, arr[i]);
 		}
 		else if(arr[i]%2!=0){
 			push(pilhaIntOdd, arr[i]);
 		}
+		ult = arr[i];
 	}
 	print(pilhaIntEven);
 	pop(pilhaIntEven);
